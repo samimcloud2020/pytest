@@ -1,15 +1,16 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pydantic import BaseModel
-from typing import List
 from model import generate_answer
 
 app = FastAPI()
+chat_history = []
 
-class AskRequest(BaseModel):
+class QuestionRequest(BaseModel):
     question: str
-    chat_history: List[str] = []
 
 @app.post("/ask")
-def ask(request: AskRequest):
-    answer = generate_answer(request.question, request.chat_history)
-    return {"answer": answer}
+async def ask_question(request: QuestionRequest):
+    answer = generate_answer(request.question, chat_history)
+    chat_history.append(f"User: {request.question}")
+    chat_history.append(f"Bot: {answer}")
+    return {"answer": answer, "chat_history": chat_history[-10:]}  # return recent history
