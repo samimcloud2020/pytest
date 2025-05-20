@@ -29,3 +29,37 @@ http://54.82.142.56:8000/ask
     "Bot: FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints"
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+(venv) root@ip-172-31-32-19:~/pytest# python -m pytest test_rag_metrics.py -s
+========================================================================= test session starts =========================================================================
+platform linux -- Python 3.12.3, pytest-8.3.5, pluggy-1.6.0
+rootdir: /root/pytest
+plugins: langsmith-0.3.42, anyio-4.9.0
+collected 1 item                                                                                                                                                      
+
+test_rag_metrics.py 
+--- RAG METRICS ---
+[Precision] FastAPI is a modern, fast (high-performance), web framework ... -> sim=0.937
+[Precision] FastAPI is a modern, fast (high-performance), web framework ... -> sim=0.937
+[Precision] Automatic Documentation: FastAPI generates interactive API d... -> sim=0.695
+[Precision] Dependency Injection: FastAPI supports dependency injection,... -> sim=0.606
+[Precision] Middleware: We can easily add middleware to your FastAPI app... -> sim=0.649
+Context Precision: 1.00
+Context Recall: 1.00
+Faithfulness (Answer vs Contexts Avg): 0.77
+Factual Correctness: 0.93
+Answer Relevancy: 0.36
+.
+
+========================================================================== 1 passed in 8.13s ==========================================================================
+(venv) root@ip-172-31-32-19:~/pytest# cat test_rag_metrics.py
