@@ -1,0 +1,22 @@
+http://54.82.142.56:8000/ask
+
+{
+  "question": "what is morden framework api"
+}
+
+
+
+{
+  "answer": "FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints",
+  "retrieved_contexts": [
+    "FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.",
+    "FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.",
+    "Automatic Documentation: FastAPI generates interactive API documentation automatically using the OpenAPI standard. You can access this documentation by visiting a specific endpoint in your application, which makes it incredibly easy to understand and test your API without having to write extensive documentation manually.",
+    "Dependency Injection: FastAPI supports dependency injection, allowing you to declare dependencies for your endpoints. This helps in keeping your code modular, testable, and maintainable. You can seamlessly inject dependencies like database connections, authentication, and more into your routes.",
+    "Middleware: We can easily add middleware to your FastAPI application for tasks like logging, authentication, or request/response modification."
+  ],
+  "chat_history": [
+    "User: what is morden framework api",
+    "Bot: FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints"
+  ]
+}
