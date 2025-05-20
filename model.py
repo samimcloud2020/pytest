@@ -1,11 +1,12 @@
 import os
+from pathlib import Path
+
 import faiss
 import torch
-from pathlib import Path
-from transformers import AutoTokenizer, AutoModelForCausalLM
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 from sentence_transformers import SentenceTransformer
 
-# Load data.txt
+# Load documents from file
 def load_documents(file_path="data.txt"):
     path = Path(file_path)
     if not path.exists():
@@ -15,57 +16,47 @@ def load_documents(file_path="data.txt"):
 
 documents = load_documents()
 
-# Load sentence embeddings
+# Load embedding model and encode documents
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 document_embeddings = embedding_model.encode(documents, convert_to_tensor=False)
 
-# FAISS index
+# Build FAISS index
 dimension = document_embeddings[0].shape[0]
 index = faiss.IndexFlatL2(dimension)
 index.add(document_embeddings)
 
-# Falcon 1B model for low-resource EC2
-model_name = "tiiuae/falcon-rw-1b"
-offload_folder = "./offload"
-
+# Load CPU-friendly LLM and tokenizer
+model_name = "google/flan-t5-base"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    torch_dtype=torch.float32,
-    device_map="auto",
-    offload_folder=offload_folder,
-    trust_remote_code=True
-)
+model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+model.to("cpu")
 
-def generate_answer(question: str, chat_history: list[str]):
-    # Retrieve top 5 documents
+# Function to generate answer
+def generate_answer(question: str):
+    # Retrieve top 5 relevant documents
     question_embedding = embedding_model.encode([question])[0]
-    _, I = index.search(question_embedding.reshape(1, -1), k=5)
-    retrieved_contexts = [documents[i] for i in I[0]]
+    _, indices = index.search(question_embedding.reshape(1, -1), k=5)
+    retrieved_contexts = [documents[i] for i in indices[0]]
 
+    # Create prompt with context + question
     context = "\n".join(retrieved_contexts)
-    history = "\n".join(chat_history)
-    prompt = f"""You are a helpful assistant. Use the context below to answer the user's question.
+    prompt = f"""Answer the question using the following context.
 
 Context:
 {context}
 
-Chat History:
-{history}
-
 Question:
-{question}
-Answer:"""
+{question}"""
 
-    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    outputs = model.generate(
-        **inputs,
+    # Handle pad token
+    pad_token_id = tokenizer.pad_token_id if tokenizer.pad_token_id else tokenizer.eos_token_id
+
+    # Tokenize and generate
+    input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to("cpu")
+    output_ids = model.generate(
+        input_ids=input_ids,
         max_new_tokens=200,
-        temperature=0.7,
-        do_sample=True,
-        top_p=0.95,
-        top_k=50,
-        repetition_penalty=1.2
+        pad_token_id=pad_token_id
     )
-    response = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    return response[len(prompt):].strip()
+    answer = tokenizer.decode(output_ids[0], skip_special_tokens=True)
+    return answer.strip(), retrieved_contexts
