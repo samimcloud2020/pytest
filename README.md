@@ -20,3 +20,6 @@ pip install pytest requests
 pip install ragas evaluate datasets
 
 pytest test_context_precision.py -s
+
+python -m pytest test_context_precision.py -s     <----------------its worked
+           
