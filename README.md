@@ -17,3 +17,4 @@ pip install ragas datasets evaluate
 
 pip install pytest requests
 
+pip install ragas evaluate datasets
