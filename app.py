@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from pydantic import BaseModel
 from model import generate_answer
 
@@ -10,7 +10,18 @@ class QuestionRequest(BaseModel):
 
 @app.post("/ask")
 async def ask_question(request: QuestionRequest):
-    answer = generate_answer(request.question, chat_history)
+    answer, retrieved_contexts = generate_answer(request.question)
+
     chat_history.append(f"User: {request.question}")
     chat_history.append(f"Bot: {answer}")
-    return {"answer": answer, "chat_history": chat_history[-10:]}  # return recent history
+
+    return {
+        "answer": answer,
+        "retrieved_contexts": retrieved_contexts,
+        "chat_history": chat_history[-10:]
+    }
+
+@app.delete("/clear_history")
+async def clear_history():
+    chat_history.clear()
+    return {"message": "Chat history cleared."}
