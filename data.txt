@@ -1,50 +1,43 @@
-FastAPI is a modern Python framework for building APIs.
-FASTAPI is a modern Python framework for building APIs.
-FASTAPI supports asynchronous programming for high performance.
-FASTAPI uses Pydantic for data validation.
-Mistral is an open-source large language model optimized for instructions.
-RAG combines retrieval with generation for context-aware answers.
-Amazon EC2 provides scalable compute in the cloud.
-Amazon Bedrock is a fully managed service that offers a choice of high-performing foundation models (FMs) from leading AI companies like AI21 Labs, Anthropic, Cohere, DeepSeek, Luma, Meta, Mistral AI, poolside (coming soon), Stability AI, TwelveLabs (coming soon), Writer, and Amazon through a single API, along with a broad set of capabilities you need to build generative AI applications with security, privacy, and responsible AI. Using Amazon Bedrock, you can easily experiment with and evaluate top FMs for your use case, privately customize them with your data using techniques such as fine-tuning and Retrieval Augmented Generation (RAG), and build agents that execute tasks using your enterprise systems and data sources. Since Amazon Bedrock is serverless, you don't have to manage any infrastructure, and you can securely integrate and deploy generative AI capabilities into your applications using the AWS services you are already familiar with.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
 
+The key features are:
 
-Use Amazon Bedrock Marketplace to discover, test, and use over 100 popular, emerging, and specialized foundation models (FMs).
+Fast: Very high performance, on par with NodeJS and Go (thanks to Starlette and Pydantic). One of the fastest Python frameworks available.
+Fast to code: Increase the speed to develop features by about 200% to 300%. *
+Fewer bugs: Reduce about 40% of human (developer) induced errors. *
+Intuitive: Great editor support. Completion everywhere. Less time debugging.
+Easy: Designed to be easy to use and learn. Less time reading docs.
+Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
+Robust: Get production-ready code. With automatic interactive documentation.
+FastAPI is a modern, fast (high-performance), web framework for building APIs with Python based on standard Python type hints.
 
-Use Amazon Bedrock IDE, part of the new Amazon SageMaker Unified Studio, to discover Amazon Bedrock models and build generative AI apps that use Amazon Bedrock models and features.
-Amazon Bedrock is designed for use cases where you want to build generative AI applications without investing heavily in custom model development. For example, a content moderation system for a social media platform could use Amazon Bedrock's pre-trained models to automatically identify and flag inappropriate text or images. Similarly, a customer support chatbot could use Amazon Bedrock's natural language processing capabilities to understand and respond to user inquiries. Amazon Bedrock is particularly useful if you have limited machine learning expertise or resources, as it helps you to benefit from AI without the need for extensive in-house development.
-Amazon Bedrock is a fully managed service that offers a choice of industry leading foundation models (FMs) along with a broad set of capabilities that you need to build generative AI applications, simplifying development with security, privacy, and responsible AI. With the comprehensive capabilities of Amazon Bedrock, you can experiment with a variety of top FMs, customize them privately with your data using techniques such as fine-tuning and retrieval-augmented generation (RAG), and create managed agents that execute complex business tasks—from booking travel and processing insurance claims to creating ad campaigns and managing inventory—all without writing any code. Since Amazon Bedrock is serverless, you don't have to manage any infrastructure, and you can securely integrate and deploy generative AI capabilities into your applications using the AWS services you are already familiar with.
-Amazon Bedrock customers can choose from some of the most cutting-edge FMs available today. This includes models from:
+The key features are:
 
-AI21 Labs
+Fast: Very high performance, on par with NodeJS and Go (thanks to Starlette and Pydantic). One of the fastest Python frameworks available.
+Fast to code: Increase the speed to develop features by about 200% to 300%. *
+Fewer bugs: Reduce about 40% of human (developer) induced errors. *
+Intuitive: Great editor support. Completion everywhere. Less time debugging.
+Easy: Designed to be easy to use and learn. Less time reading docs.
+Short: Minimize code duplication. Multiple features from each parameter declaration. Fewer bugs.
+Robust: Get production-ready code. With automatic interactive documentation.
+Automatic Documentation: FastAPI generates interactive API documentation automatically using the OpenAPI standard. You can access this documentation by visiting a specific endpoint in your application, which makes it incredibly easy to understand and test your API without having to write extensive documentation manually.
+Python Type Hints: One of FastAPI's standout features is its use of Python-type hints. By annotating function parameters and return types with type hints, you not only improve code readability but also enable FastAPI to automatically validate incoming data and generate accurate API documentation. This feature makes your code less error-prone and more self-documenting.
+Data Validation: FastAPI uses Pydantic models for data validation. You can define your data models using Pydantic's schema and validation capabilities. This ensures incoming data is automatically validated, serialized, and deserialized, reducing the risk of handling invalid data in your application.
+Asynchronous Support: With the rise of asynchronous programming in Python, FastAPI fully embraces asynchronous operations. You can use Python's async and await keywords to write asynchronous endpoints, making it well-suited for handling I/O-bound tasks and improving the overall responsiveness of your application.
+Dependency Injection: FastAPI supports dependency injection, allowing you to declare dependencies for your endpoints. This helps in keeping your code modular, testable, and maintainable. You can seamlessly inject dependencies like database connections, authentication, and more into your routes.
+Security Features: FastAPI includes various security features out of the box, such as support for OAuth2, JWT (JSON Web Tokens), and automatic validation of request data to prevent common security vulnerabilities like SQL injection and cross-site scripting (XSS) attacks.
 
-Amazon
+Advantage of FastAPI
+Here are simple advantages of using FastAPI:
 
-Anthropic
+Easy to Learn and Use: FastAPI is designed to be straightforward, especially for Python developers. Its simple and intuitive syntax, along with automatic documentation generation, makes it easy to get started and maintain.
+High Performance: FastAPI is built for speed. It's one of the fastest Python web frameworks available, thanks to its asynchronous support and efficient data handling. This means your web applications can handle a large number of requests without slowing down.
+Automatic Data Validation: With FastAPI, you can use Python type hints to define the data structure you expect for your API requests and responses. FastAPI automatically validates the data, reducing the chances of errors caused by incorrect input.
+Authentication and Authorization: It provides simple ways to handle authentication and authorization, whether using OAuth2, JWT tokens, or custom methods.
+Middleware: We can easily add middleware to your FastAPI application for tasks like logging, authentication, or request/response modification.
 
-Cohere
+Disadvantage of FastAPI
+Here are some potential disadvantages of using FastAPI:
 
-DeepSeek
-
-Luma AI
-
-Meta
-
-Mistral AI
-
-poolside (coming soon)
-
-Stability AI
-
-TwelveLabs (coming soon)
-
-There are five reasons to use Amazon Bedrock for building generative AI applications.
-
-Choice of leading FMs: Amazon Bedrock offers an easy-to-use developer experience to work with a broad range of high-performing FMs from Amazon and leading AI companies like AI21 Labs, Anthropic, Cohere, Meta, Mistral AI, and Stability AI. You can quickly experiment with a variety of FMs in the playground, and use a single API for inference regardless of the models you choose, giving you the flexibility to use FMs from different providers and keep up to date with the latest model versions with minimal code changes.
-
-Easy model customization with your data: Privately customize FMs with your own data through a visual interface without writing any code. Simply select the training and validation data sets stored in Amazon Simple Storage Service (Amazon S3) and, if required, adjust the hyperparameters to achieve the best possible model performance.
-
-Fully managed agents that can invoke APIs dynamically to execute tasks: Build agents that execute complex business tasks—from booking travel and processing insurance claims to creating ad campaigns, preparing tax filings, and managing your inventory—by dynamically calling your company systems and APIs. Fully managed agents for Amazon Bedrock extend the reasoning capabilities of FMs to break down tasks, create an orchestration plan, and execute it.
-
-Native support for RAG to extend the power of FMs with proprietary data: With Amazon Bedrock Knowledge Bases, you can securely connect FMs to your data sources for retrieval augmentation—from within the managed service—extending the FM’s already powerful capabilities and making it more knowledgeable about your specific domain and organization.
-
-Data security and compliance certifications: Amazon Bedrock offers several capabilities to support security and privacy requirements. Amazon Bedrock is in scope for common compliance standards such as Service and Organization Control (SOC), International Organization for Standardization (ISO), is Health Insurance Portability and Accountability Act (HIPAA) eligible, and customers can use Amazon Bedrock in compliance with the General Data Protection Regulation (GDPR). Amazon Bedrock is CSA Security Trust Assurance and Risk (STAR) Level 2 certified, which validates the use of best practices and the security posture of AWS cloud offerings. With Amazon Bedrock, your content is not used to improve the base models and is not shared with any model providers. Your data in Amazon Bedrock is always encrypted in transit and at rest, and you can optionally encrypt the data using your own keys. You can use AWS PrivateLink with Amazon Bedrock to establish private connectivity between your FMs and your Amazon Virtual Private Cloud (Amazon VPC) without exposing your traffic to the Internet.
+Learning Curve: While FastAPI is designed to be developer-friendly, it may still have a learning curve for those new to asynchronous programming or web frameworks in general. Developers with no prior experience in Python may also need to learn Python first.
+Community and Documentation: Although FastAPI's community is growing rapidly, it may not have as extensive a support network or documentation as some other frameworks. You may encounter fewer tutorials, guides, and community-contributed packages.
