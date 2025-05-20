@@ -18,3 +18,5 @@ pip install ragas datasets evaluate
 pip install pytest requests
 
 pip install ragas evaluate datasets
+
+pytest test_context_precision.py -s
