@@ -1,3 +1,12 @@
+curl -X 'POST' \
+  'http://54.82.142.56:8000/ask' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "question": "what is morden framework api"
+}'
+
+
 http://54.82.142.56:8000/ask
 
 {
