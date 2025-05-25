@@ -1,0 +1,43 @@
+Example of Topic Adherence in a RAG System
+Scenario: A user queries a RAG system designed for medical information, asking:
+
+Query: "What are the treatment options for type 2 diabetes in adults?"
+
+The RAG system retrieves relevant documents from a medical database (e.g., PubMed or clinical guidelines) and generates a response based on the retrieved context.
+
+Good Topic Adherence
+Retrieved Documents:
+
+Document 1: ADA 2023 Guidelines on type 2 diabetes management, listing metformin, SGLT2 inhibitors, and lifestyle interventions.
+Document 2: A review article on pharmacological treatments for type 2 diabetes, including GLP-1 agonists and insulin therapy.
+Document 3: A study on lifestyle interventions for diabetes control, emphasizing diet and exercise.
+Generated Response:
+
+For adults with type 2 diabetes, treatment options include medications like metformin (first-line), SGLT2 inhibitors, GLP-1 receptor agonists, and insulin therapy for advanced cases. Lifestyle interventions, such as a balanced diet, regular exercise, and weight management, are also critical, as recommended by the American Diabetes Association (ADA) 2023 guidelines. Treatment is tailored based on patient needs, such as glucose levels and comorbidities.
+
+Why This is Good:
+
+The response directly addresses the query’s focus on treatment options.
+It uses relevant information from retrieved documents, staying on-topic (type 2 diabetes treatments).
+It avoids irrelevant details, like the history of diabetes or unrelated medical conditions.
+The response is concise, coherent, and grounded in the retrieved context.
+Poor Topic Adherence
+Retrieved Documents:
+
+Document 1: A general overview of diabetes, including its history and epidemiology.
+Document 2: A study on type 1 diabetes treatments (less relevant to the query).
+Document 3: A blog post on general health tips, with a brief mention of diabetes.
+Generated Response:
+
+Diabetes is a chronic condition that affects millions worldwide, with type 1 and type 2 being the main forms. Type 2 diabetes is linked to insulin resistance. Historically, diabetes was first described in ancient texts. Treatments for diabetes include insulin, which is more common in type 1, and general health tips like eating well and staying active. Some studies also explore genetic factors in diabetes.
+
+Why This is Poor:
+
+The response drifts into irrelevant topics (history of diabetes, type 1 diabetes, genetic factors) not asked in the query.
+It fails to focus on specific treatment options for type 2 diabetes in adults.
+The retrieved documents are partially off-topic (type 1 diabetes, general health), leading to a less relevant response.
+The response lacks specificity and actionable information, reducing topic adherence.
+How Topic Adherence is Achieved
+Good Retrieval: The first case retrieves highly relevant documents (ADA guidelines, targeted studies), ensuring the generative model has accurate context.
+Model Alignment: The model is fine-tuned to prioritize query intent, filtering out irrelevant details from retrieved documents.
+Clear Query: The query is specific, helping the retriever focus on type 2 diabetes treatments.
