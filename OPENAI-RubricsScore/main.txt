@@ -1,0 +1,68 @@
+What is RubricScore in RAGAS?
+RubricScore is a customizable evaluation metric in the RAGAS framework that allows users to define a scoring rubric to evaluate 
+the quality of a RAG system’s generated responses. Unlike automated metrics like Faithfulness or Answer Relevance, RubricScore 
+often involves human-defined or semi-automated criteria to assess specific aspects of the response, such as:
+
+Relevance: Does the response address the query directly?
+Completeness: Does it cover all key aspects of the query?
+Correctness: Is the information accurate and grounded in the retrieved context?
+Clarity: Is the response clear and well-structured?
+Topic Adherence: Does it stay on-topic without introducing irrelevant details?
+The rubric defines score levels (e.g., 1 to 5, where 1 is poor and 5 is excellent) with specific criteria for each level.
+RubricScore can be calculated manually by human evaluators or approximated using a language model (e.g., GPT-4) to score responses based on the rubric.
+
+Key Features of RubricScore
+Customizable: Users define the rubric based on their needs (e.g., prioritizing completeness for technical queries or brevity for conversational ones).
+Flexible Scoring: Scores can be numerical (e.g., 1–5) or categorical (e.g., Poor, Fair, Good).
+Human or Automated: While human evaluators provide nuanced judgment, LLMs can automate scoring by interpreting the rubric, though this may introduce biases.
+Context-Specific: The rubric can focus on domain-specific criteria, like medical accuracy for healthcare RAG systems.
+Example of RubricScore in RAGAS
+Scenario: A RAG system is designed to answer questions about renewable energy. The user queries:
+
+Query: "What are the environmental benefits of solar energy?"
+
+A rubric is defined to evaluate the response, focusing on relevance, completeness, and topic adherence. Here’s a sample rubric:
+
+
+Score	Criteria
+5 (Excellent)	Response fully addresses environmental benefits, includes multiple benefits (e.g., reduced emissions, low land impact), is accurate, and stays on-topic without irrelevant details.
+4 (Good)	Response addresses most environmental benefits, is accurate, but may miss one minor benefit or include slight off-topic details.
+3 (Fair)	Response addresses some benefits but lacks depth, includes minor inaccuracies, or drifts to unrelated topics (e.g., solar panel costs).
+2 (Poor)	Response is partially relevant, misses key benefits, contains inaccuracies, or focuses on unrelated topics.
+1 (Very Poor)	Response is off-topic, incorrect, or fails to address environmental benefits.
+Good Response Example
+Retrieved Documents:
+
+Document 1: A study on solar energy’s impact, stating it reduces CO2 emissions by 80% compared to fossil fuels.
+Document 2: An article on renewable energy, noting solar’s minimal land use and low water consumption.
+Document 3: EPA guidelines confirming solar energy’s role in reducing air pollution.
+Generated Response:
+
+Solar energy offers significant environmental benefits, including an 80% reduction in CO2 emissions compared to fossil fuels, as per recent studies. It also minimizes land use 
+through rooftop installations and requires low water consumption, unlike coal or nuclear power. Additionally, solar energy reduces air pollution, improving public health, as noted in EPA guidelines.
+
+RubricScore: 5 (Excellent)
+
+Reason: The response directly addresses the query, lists multiple environmental benefits (emissions reduction, low land/water use, reduced pollution), is accurate, and stays
+on-topic without discussing unrelated aspects like costs or installation.
+
+Poor Response Example
+Retrieved Documents:
+
+Document 1: A general overview of renewable energy, briefly mentioning solar.
+Document 2: A blog on solar panel installation costs.
+Document 3: A study on wind energy benefits.
+Generated Response:
+
+Solar energy is a popular renewable energy source. It involves installing panels, which can be costly but save money over time. Renewable energy, including wind and solar, is growing globally. Solar panels use sunlight, which is abundant, but manufacturing them can be complex.
+
+RubricScore: 2 (Poor)
+
+Reason: The response barely addresses environmental benefits, focusing instead on costs and general renewable energy trends. It lacks depth, misses key benefits (e.g., emissions reduction), and includes irrelevant details, indicating poor topic adherence and incomplete use of retrieved context.
+How RubricScore is Calculated
+Define Rubric: Create a scoring guide like the one above, specifying criteria for each score level.
+Evaluate Response:
+Human Evaluator: A person reviews the response against the rubric and assigns a score (e.g., 5 for the good response).
+Automated (LLM): An LLM (e.g., GPT-4) is prompted with the rubric and response, asking it to assign a score based on the criteria.
+Aggregate Scores: For multiple responses, average RubricScores to assess overall system performance.
+
